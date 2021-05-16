@@ -7,10 +7,11 @@ def before_install():
   # if frappe.db.get_default('desktop:home_page') != 'desktop':
   #   print('ERPNext Quota can only be install after setup wizard is completed')
   # Fetching user list
-  filters = {
-    'enabled': 1,
-    'name': ['!=','Guest', 'Administrator']
-  }
+    filters = [
+        {'enabled': 1},
+        {'name': ['!=', 'Administrator']},
+        {'name': ['!=', 'Guest']}
+    ]
   
   user_list = frappe.get_list('User', filters = filters, fields = ["name"])
 
